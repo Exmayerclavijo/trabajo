@@ -85,5 +85,3 @@ Filtros de categorías: Para mejorar la experiencia de búsqueda.
 Modo oscuro: Implementando un toggle que invierta la paleta de colores.
 Animaciones de carga: Para elementos que requieran tiempo de carga como imágenes.
 Panel de vista rápida: Para ver detalles del producto sin salir de la página principal.
-
-La combinación del azul brillante (#00BFFF) con el tono crema suave (#FFF8DC) crea una experiencia visual agradable y moderna que transmite confianza y calidez, ideal para una tienda de ropa que busca proyectar profesionalismo y estilo.
