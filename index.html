@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE BOX - Tienda de Moda</title>
+    <style>
+        :root {
+            --primary-color: #00BFFF;
+            --secondary-color: #FFF8DC;
+            --primary-dark: #0099CC;
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+        }
+        
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icons a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-size: 20px;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(to right, rgba(0, 191, 255, 0.9), rgba(0, 153, 204, 0.8)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 120px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Featured products */
+        .featured {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--text-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-category {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Categories section */
+        .categories {
+            background-color: var(--text-light);
+            padding: 80px 20px;
+        }
+        
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .category-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .category-card:hover .category-img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .category-name {
+            color: var(--text-light);
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--text-light);
+        }
+        
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .newsletter h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #f0e9d0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input, .newsletter-btn {
+                width: 100%;
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">THE BOX</div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Mujer</a></li>
+                    <li><a href="#">Hombre</a></li>
+                    <li><a href="#">Niños</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="#">🔍</a>
+                <a href="#">👤</a>
+                <a href="#">🛒</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Descubre Tu Estilo Único</h1>
+        <p>La nueva colección de temporada ha llegado con los diseños más exclusivos y tendencias que te encantarán.</p>
+        <a href="#" class="btn">Comprar Ahora</a>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+        <h2 class="section-title">Productos Destacados</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="product-img/product-1.jpg" alt="Producto 1" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Vestido Floral Verano</h3>
+                    <p class="product-category">Mujer</p>
+                    <p class="product-price">$49.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="product-img/product-2.jpg" alt="Producto 2" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Camisa Oxford Slim Fit</h3>
+                    <p class="product-category">Hombre</p>
+                    <p class="product-price">$39.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="product-img/product-3.jpg" alt="Producto 3" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Jeans Skinny Premium</h3>
+                    <p class="product-category">Mujer</p>
+                    <p class="product-price">$65.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="product-img/product-4.jpg" alt="Producto 4" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Sudadera Urban Style</h3>
+                    <p class="product-category">Unisex</p>
+                    <p class="product-price">$45.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+             <!-- Product 5 -->
+             <div class="product-card">
+                <img src="product-img/product-5.jpg" alt="Producto 3" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">carteras</h3>
+                    <p class="product-category">Mujer</p>
+                    <p class="product-price">$50.00</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="product-card">
+            <img src="product-img/product-6.jpg" alt="Producto 3" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">polos</h3>
+                <p class="product-category">Hombre</p>
+                <p class="product-price">$30.00</p>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+    </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="categories-container">
+            <h2 class="section-title">Categorías</h2>
+            <div class="categories-grid">
+                <!-- Category 1 -->
+                <a href="mujer.html" class="category-card">
+                    <img src="categorias/categoria1.jpg" alt="Mujer" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Mujer</h3>
+                    </div>
+                </a>
+                
+                <!-- Category 2 -->
+                <a href="hombre.html" class="category-card">
+                    <img src="categorias/categoria2.jpg" alt="Hombre" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Hombre</h3>
+                    </div>
+                </a>
+                
+                <!-- Category 3 -->
+                <a href="ninos.html" class="category-card">
+                    <img src="categorias/categoria3.jpg" alt="Niños" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Niños</h3>
+                    </div>
+                </a>
+                
+                <!-- Category 4 -->
+                <a href="accesorios.html" class="category-card">
+                    <img src="categorias/categoria4.jpg" alt="Accesorios" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Accesorios</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Únete a Nuestra Newsletter</h2>
+            <p>Suscríbete para recibir las últimas tendencias, nuevos productos y ofertas exclusivas.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Suscribirse</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">THE BOX</div>
+                <p>Somos una tienda de moda comprometida con la calidad y el estilo. Ofrecemos las últimas tendencias para toda la familia.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contáctanos</h3>
+                <p>📍 Calle volante , Ciudad</p>
+                <p>📱 +51 950919203</p>
+                <p>✉️ thebox.com</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 THE BOX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Aquí irían las funcionalidades JavaScript como sliders, carrito de compras, etc.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Código para inicializar comportamientos como sliders, menús desplegables, etc.
+            console.log('La tienda THE BOX está lista para mostrar sus productos.');
+            
+            // Ejemplo de funcionalidad para los botones de "Añadir al Carrito"
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productTitle = this.parentElement.querySelector('.product-title').textContent;
+                    alert(`¡${productTitle} agregado al carrito!`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

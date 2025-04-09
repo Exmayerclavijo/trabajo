@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE BOX - Ofertas</title>
+    <style>
+        :root {
+            --primary-color: #00BFFF;
+            --secondary-color: #FFF8DC;
+            --primary-dark: #0099CC;
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+            --discount-color: #FF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+        }
+        
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icons a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-size: 20px;
+        }
+
+        /* Category Banner */
+        .category-banner {
+            background: linear-gradient(to right, rgba(0, 191, 255, 0.9), rgba(0, 153, 204, 0.8)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .category-banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .category-banner p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products section */
+        .products {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--text-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--discount-color);
+            color: var(--text-light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .product-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-category {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #777;
+            font-size: 16px;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--discount-color);
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .category-banner h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">THE BOX</div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="mujer.html">Mujer</a></li>
+                    <li><a href="hombre.html">Hombre</a></li>
+                    <li><a href="ninos.html">Niños</a></li>
+                    <li><a href="accesorios.html">Accesorios</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="#">🔍</a>
+                <a href="#">👤</a>
+                <a href="#">🛒</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <section class="category-banner">
+        <h1>Ofertas Especiales</h1>
+        <p>Descubre nuestras mejores ofertas y descuentos exclusivos</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <h2 class="section-title">Productos en Oferta</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="discount-badge">-30%</div>
+                <img src="product-img/oferta-1.jpg" alt="Vestido de Verano" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Vestido de Verano</h3>
+                    <p class="product-category">Mujer</p>
+                    <div class="price-container">
+                        <span class="original-price">$69.99</span>
+                        <span class="product-price">$48.99</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="discount-badge">-25%</div>
+                <img src="product-img/oferta-2.jpg" alt="Camisa Formal" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Camisa Formal</h3>
+                    <p class="product-category">Hombre</p>
+                    <div class="price-container">
+                        <span class="original-price">$49.99</span>
+                        <span class="product-price">$37.49</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="discount-badge">-40%</div>
+                <img src="product-img/oferta-3.jpg" alt="Bolso Elegante" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Bolso Elegante</h3>
+                    <p class="product-category">Accesorios</p>
+                    <div class="price-container">
+                        <span class="original-price">$79.99</span>
+                        <span class="product-price">$47.99</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="discount-badge">-20%</div>
+                <img src="product-img/oferta-4.jpg" alt="Zapatos Deportivos" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Zapatos Deportivos</h3>
+                    <p class="product-category">Calzado</p>
+                    <div class="price-container">
+                        <span class="original-price">$89.99</span>
+                        <span class="product-price">$71.99</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">THE BOX</div>
+                <p>Somos una tienda de moda comprometida con la calidad y el estilo. Ofrecemos las últimas tendencias para toda la familia.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contáctanos</h3>
+                <p>📍 Calle volante , Ciudad</p>
+                <p>📱 +51 950919203</p>
+                <p>✉️ thebox.com</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 THE BOX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productTitle = this.parentElement.querySelector('.product-title').textContent;
+                    alert(`¡${productTitle} agregado al carrito!`);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
